@@ -69,6 +69,13 @@ class WIFI_MASK:
 	FlagMinMax=False
 
 
+class WIFI_Cloud:
+	"""WIFI Cloud"""
+	def LibInit(github="https://github.com/VitalySherbakov/hashcat.git"):
+		"""Иницилизациия Библиотек"""
+		com=f"install cmake build-essential -y && apt install checkinstall git -y && git clone {github} && cd hashcat && git submodule update --init && make && make install && pip install unrar"
+		return com
+
 # class WIFI_Cloud:
 # 	"""WIFI Cloud"""
 # 	def LibInit(github="https://github.com/VitalySherbakov/hashcat.git"):
