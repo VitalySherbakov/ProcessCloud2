@@ -4,60 +4,60 @@ current_dir = os.getcwd()
 current_dir = current_dir.replace("\\","//")
 #print(f"D: {current_dir}")
 
-class WIFI_Init(object):
-	DirHomeHC22000=""
-	DirHomeDicts=""
-	DirGoogleDisk=""
-	DirWIFI=[]
-	Speed=1
-	One=7
-	Two=12
-	GoogleDisk1=[]
-	GoogleDisk2=[]
-	GoogleDisk3=[]
-	DictsProces=[]
-	DataJson=""
-	DataJson2=""
-	def __init__(self, filesetting ,wifidecode , FlagRead=True, encode="utf-8"):
-		super(WIFI_Init, self).__init__()
-		if FlagRead:
-			with open(wifidecode, "rt", encoding=encode) as f:
-				self.DataJson=json.loads(f.read())
-				self.DirHomeHC22000=self.DataJson['DirHomeHC22000']
-				self.DirHomeDicts=self.DataJson['DirHomeDicts']
-				self.DirGoogleDisk=self.DataJson['DirGoogleDisk']
-				self.Speed=self.DataJson['Speed']
-				for i in self.DataJson['DirWIFI']:
-					self.DirWIFI.append(i)
-			with open(filesetting, "rt", encoding=encode) as f2:
-				self.DataJson2=json.loads(f2.read())
-				self.One=self.DataJson2['One']
-				self.Two=self.DataJson2['Two']
-				for i in self.DataJson2['GoogleDisk1']:
-					self.GoogleDisk1.append(i)
-				for i in self.DataJson2['GoogleDisk2']:
-					self.GoogleDisk2.append(i)
-				for i in self.DataJson2['GoogleDisk3']:
-					self.GoogleDisk3.append(i)
-				for i in self.DataJson2['DictsProces']:
-					self.DictsProces.append(i)
-		else:
-			self.DataJson=json.loads(wifidecode)
-			self.DirHomeHC22000=self.DataJson['DirHomeHC22000']
-			self.DirHomeDicts=self.DataJson['DirHomeDicts']
-			self.DirGoogleDisk=self.DataJson['DirGoogleDisk']
-			self.Speed=self.DataJson['Speed']
-			self.DataJson2=json.loads(filesetting)
-			self.One=self.DataJson2['One']
-			self.Two=self.DataJson2['Two']
-			for i in self.DataJson2['GoogleDisk1']:
-				self.GoogleDisk1.append(i)
-			for i in self.DataJson2['GoogleDisk2']:
-				self.GoogleDisk2.append(i)
-			for i in self.DataJson2['GoogleDisk3']:
-				self.GoogleDisk3.append(i)
-			for i in self.DataJson2['DictsProces']:
-				self.DictsProces.append(i)					
+# class WIFI_Init(object):
+# 	DirHomeHC22000=""
+# 	DirHomeDicts=""
+# 	DirGoogleDisk=""
+# 	DirWIFI=[]
+# 	Speed=1
+# 	One=7
+# 	Two=12
+# 	GoogleDisk1=[]
+# 	GoogleDisk2=[]
+# 	GoogleDisk3=[]
+# 	DictsProces=[]
+# 	DataJson=""
+# 	DataJson2=""
+# 	def __init__(self, filesetting ,wifidecode , FlagRead=True, encode="utf-8"):
+# 		super(WIFI_Init, self).__init__()
+# 		if FlagRead:
+# 			with open(wifidecode, "rt", encoding=encode) as f:
+# 				self.DataJson=json.loads(f.read())
+# 				self.DirHomeHC22000=self.DataJson['DirHomeHC22000']
+# 				self.DirHomeDicts=self.DataJson['DirHomeDicts']
+# 				self.DirGoogleDisk=self.DataJson['DirGoogleDisk']
+# 				self.Speed=self.DataJson['Speed']
+# 				for i in self.DataJson['DirWIFI']:
+# 					self.DirWIFI.append(i)
+# 			with open(filesetting, "rt", encoding=encode) as f2:
+# 				self.DataJson2=json.loads(f2.read())
+# 				self.One=self.DataJson2['One']
+# 				self.Two=self.DataJson2['Two']
+# 				for i in self.DataJson2['GoogleDisk1']:
+# 					self.GoogleDisk1.append(i)
+# 				for i in self.DataJson2['GoogleDisk2']:
+# 					self.GoogleDisk2.append(i)
+# 				for i in self.DataJson2['GoogleDisk3']:
+# 					self.GoogleDisk3.append(i)
+# 				for i in self.DataJson2['DictsProces']:
+# 					self.DictsProces.append(i)
+# 		else:
+# 			self.DataJson=json.loads(wifidecode)
+# 			self.DirHomeHC22000=self.DataJson['DirHomeHC22000']
+# 			self.DirHomeDicts=self.DataJson['DirHomeDicts']
+# 			self.DirGoogleDisk=self.DataJson['DirGoogleDisk']
+# 			self.Speed=self.DataJson['Speed']
+# 			self.DataJson2=json.loads(filesetting)
+# 			self.One=self.DataJson2['One']
+# 			self.Two=self.DataJson2['Two']
+# 			for i in self.DataJson2['GoogleDisk1']:
+# 				self.GoogleDisk1.append(i)
+# 			for i in self.DataJson2['GoogleDisk2']:
+# 				self.GoogleDisk2.append(i)
+# 			for i in self.DataJson2['GoogleDisk3']:
+# 				self.GoogleDisk3.append(i)
+# 			for i in self.DataJson2['DictsProces']:
+# 				self.DictsProces.append(i)					
 
 
 class WIFI_MASK:
