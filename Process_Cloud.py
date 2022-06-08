@@ -72,6 +72,7 @@ class WIFI_MASK:
 
 class WIFI_Cloud:
 	"""WIFI Cloud"""
+	WifiCurrent=""
 	def LibInit(github="https://github.com/VitalySherbakov/hashcat.git"):
 		"""Иницилизациия Библиотек"""
 		com=f"install cmake build-essential -y && apt install checkinstall git -y && git clone {github} && cd hashcat && git submodule update --init && make && make install && pip install unrar"
@@ -289,6 +290,7 @@ class WIFI_Cloud:
 	 			if(indexdir==i):
 	 				dir_wifi=li
 	 				pathdir=f"{dir_hc.DirHomeHC22000}/{li}"
+	 				WIFI_Cloud.WifiCurrent=li
 	 				files=os.listdir(pathdir)
 	 				if len(files)>0:
 	 					selectfilespath=f"{pathdir}/{files[0]}"
