@@ -1,5 +1,6 @@
 import os, sys, json
 from google.colab import files
+from os import path
 
 current_dir = os.getcwd()
 current_dir = current_dir.replace("\\","//")
@@ -167,6 +168,11 @@ class WIFI_Cloud:
 	def RunProcessRAR(filehash,mask,speed=1):
 		"""Запуск на поиск пароля RAR !hashcat"""
 		return f"-w {speed} -m 13000 -a3 {filehash} {mask}"
+	def FormatFile(filepath: str):
+    	formatfile=path.basename(filepath)
+    	formatfileres=path.splitext(formatfile)[1]
+    	formatfileres=formatfileres.replace(".","")
+    	return formatfileres
 	def HelpMask():
 		"""Инфа по Маске"""
 		text=""
@@ -221,7 +227,10 @@ class WIFI_Cloud:
 	 			print(f"Номер: {i}|Словарь: {li}")
 	 		print(f"-------Захваты {dir_hc.DirHomeHC22000}--------")
 	 		hc22000file=files.upload()
-	 		print(f"HC22000: {hc22000file}")
+	 		filehc22000str=hc22000file[0]
+	 		print(f"HC22000: {filehc22000str}")
+	 		if FormatFile(filehc22000str)=="hc22000":
+	 			print("Формат: Правильный!")
 	 	except Exception as ex:
  			print(f"ERROR: {ex}!")
 
