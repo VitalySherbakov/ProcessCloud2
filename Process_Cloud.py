@@ -229,7 +229,6 @@ class WIFI_Cloud:
 	 	url_convert="https://hashcat.net/cap2hashcat/"
 	 	#Словари Папка
 	 	try:
-	 		dirs = os.listdir(dir_hc.DirHomeHC22000)
 	 		filesdicts = os.listdir(dir_hc.DirHomeDicts)
 	 		print(f"--------Словари {dir_hc.DirHomeDicts}-------")
 	 		for i,li in enumerate(filesdicts):
@@ -238,6 +237,7 @@ class WIFI_Cloud:
 	 		wifidir=input("WIFI: ")
 	 		WIFI_Cloud.CreatDir(f"{current_dir}/{dir_hc.DirHomeHC22000}/{wifidir}")
 	 		WIFI_Cloud.UploadedFile(f"{current_dir}/{dir_hc.DirHomeHC22000}", wifidir)
+	 		dirs = os.listdir(dir_hc.DirHomeHC22000)
 	 		for i,li in enumerate(dirs):
 	 			print(f"Номер: {i}|Папка: {li}")
 	 		print("---------------")
