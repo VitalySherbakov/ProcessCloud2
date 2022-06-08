@@ -82,9 +82,9 @@ class WIFI_Cloud:
 		dir_dicts=f"{current_dir}//{dir_hc.DirHomeDicts}"
 		WIFI_Cloud.CreatDir(dir_home)
 		WIFI_Cloud.CreatDir(dir_dicts)
-		for li in dir_hc.DirWIFI:
- 			dir_new=f"{current_dir}//{dir_hc.DirHomeHC22000}//{li}"
- 			WIFI_Cloud.CreatDir(dir_new)
+		# for li in dir_hc.DirWIFI:
+ 	# 		dir_new=f"{current_dir}//{dir_hc.DirHomeHC22000}//{li}"
+ 	# 		WIFI_Cloud.CreatDir(dir_new)
 	def GoogleDisk1_ZIP_Extract(dir_hc):
 		"""Распаковка Первого Пакета Словарей zip"""
 		command=""
@@ -168,10 +168,18 @@ class WIFI_Cloud:
 		"""Запуск на поиск пароля RAR !hashcat"""
 		return f"-w {speed} -m 13000 -a3 {filehash} {mask}"
 	def FormatFile(filepath: str):
+		"""Формат Файла"""
 		formatfile=os.path.basename(filepath)
 		formatfileres=os.path.splitext(formatfile)[1]
 		formatfileres=formatfileres.replace(".","")
 		return formatfileres
+	def UploadedFile():
+	  """Загрузка Файла в Cloud"""
+	  uploaded = files.upload()
+	  for k, v in uploaded.items():
+	    open(k, 'wb').write(v)
+	  filestr=list(uploaded.keys())[0]
+	  return filestr
 	def HelpMask():
 		"""Инфа по Маске"""
 		text=""
@@ -226,6 +234,7 @@ class WIFI_Cloud:
 	 			print(f"Номер: {i}|Словарь: {li}")
 	 		print(f"-------Захваты {dir_hc.DirHomeHC22000}--------")
 	 		hc22000file=files.upload()
+	 		print(f"HC22000: {hc22000file}")
 	 		filehc22000str=hc22000file[0]
 	 		print(f"HC22000: {filehc22000str}")
 	 		if FormatFile(filehc22000str)=="hc22000":
