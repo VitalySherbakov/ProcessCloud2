@@ -75,6 +75,154 @@ class WIFI_Cloud:
 		"""Иницилизациия Библиотек"""
 		com=f"install cmake build-essential -y && apt install checkinstall git -y && git clone {github} && cd hashcat && git submodule update --init && make && make install && pip install unrar"
 		return com
+	def DirInit(dir_hc=WIFI_Init()):
+		"""Иницилизация создание необходимых директорий"""
+		dir_home=f"{current_dir}//{dir_hc.DirHomeHC22000}"
+		dir_dicts=f"{current_dir}//{dir_hc.DirHomeDicts}"
+		WIFI_Cloud.CreatDir(dir_home)
+		WIFI_Cloud.CreatDir(dir_dicts)
+		for li in dir_hc.DirWIFI:
+ 			dir_new=f"{current_dir}//{dir_hc.DirHomeHC22000}//{li}"
+ 			WIFI_Cloud.CreatDir(dir_new)
+	def GoogleDisk1_ZIP_Extract(dir_hc=WIFI_Init()):
+		"""Распаковка Первого Пакета Словарей zip"""
+		command=""
+		for i,li in enumerate(dir_hc.GoogleDisk1):
+			if(i==0):
+				command+=f"{dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts} && "
+			if(i>0 and i<len(dir_hc.GoogleDisk1)-1):
+				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts} && "
+			if(i==len(dir_hc.GoogleDisk1)-1):
+				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts}"
+		return command
+	def GoogleDisk2_ZIP_Extract(dir_hc=WIFI_Init()):
+		"""Распаковка Второй Пакета Словарей zip"""
+		command=""
+		for i,li in enumerate(dir_hc.GoogleDisk2):
+			if(i==0):
+				command+=f"{dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts} && "
+			if(i>0 and i<len(dir_hc.GoogleDisk2)-1):
+				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts} && "
+			if(i==len(dir_hc.GoogleDisk2)-1):
+				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts}"
+		return command
+	def GoogleDisk3_ZIP_Extract(dir_hc=WIFI_Init()):
+		"""Распаковка Третий Пакета Словарей zip"""
+		command=""
+		for i,li in enumerate(dir_hc.GoogleDisk3):
+			if(i==0):
+				command+=f"{dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts} && "
+			if(i>0 and i<len(dir_hc.GoogleDisk3)-1):
+				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts} && "
+			if(i==len(dir_hc.GoogleDisk3)-1):
+				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts}"
+		return command
+	def GoogleDisk1_RAR_Extract(dir_hc=WIFI_Init()):
+		"""Распаковка Первого Пакета Словарей rar"""
+		command=""
+		for i,li in enumerate(dir_hc.GoogleDisk1):
+			if(i==0):
+				command+=f"{dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts} && "
+			if(i>0 and i<len(dir_hc.GoogleDisk1)-1):
+				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts} && "
+			if(i==len(dir_hc.GoogleDisk1)-1):
+				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts}"
+		return command
+	def GoogleDisk2_RAR_Extract(dir_hc=WIFI_Init()):
+		"""Распаковка Второй Пакета Словарей rar"""
+		command=""
+		for i,li in enumerate(dir_hc.GoogleDisk2):
+			if(i==0):
+				command+=f"{dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts} && "
+			if(i>0 and i<len(dir_hc.GoogleDisk2)-1):
+				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts} && "
+			if(i==len(dir_hc.GoogleDisk2)-1):
+				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts}"
+		return command
+	def GoogleDisk3_RAR_Extract(dir_hc=WIFI_Init()):
+		"""Распаковка Третий Пакета Словарей rar"""
+		command=""
+		for i,li in enumerate(dir_hc.GoogleDisk3):
+			if(i==0):
+				command+=f"{dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts} && "
+			if(i>0 and i<len(dir_hc.GoogleDisk3)-1):
+				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts} && "
+			if(i==len(dir_hc.GoogleDisk3)-1):
+				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts}"
+		return command
+	def CreatDir(dirnew):
+		"""Создать Директорию"""
+		if os.path.exists(dirnew)==False:
+			os.mkdir(dirnew)
+	def GenerateHASH_ZIP(filehash, filename):
+		"""Генератор Хеша !cat"""
+		return f"{filehash} | grep -E -o '(\\$pkzip2\\$.*\\$/pkzip2\\$)|(\\$zip2\\$.*\\$/zip2\\$)' > {filename}.hash"
+	def GenerateHASH_RAR(filehash, filename):
+		"""Генератор Хеша !cat"""
+		return f"{filehash} | grep -E -o '(\\$RAR3\\$[^:]+)|(\\$rar5\\$.*)' > {filename}.hash"
+	def RunProcessZIP(filehash,mask,speed=1):
+		"""Запуск на поиск пароля ZIP !hashcat"""
+		return f"-w {speed} -m 13600 -a3 {filehash} {mask}"
+	def RunProcessRAR(filehash,mask,speed=1):
+		"""Запуск на поиск пароля RAR !hashcat"""
+		return f"-w {speed} -m 13000 -a3 {filehash} {mask}"
+	def HelpMask():
+		"""Инфа по Маске"""
+		text=""
+		telin=["? | Charset",
+		"===+=========",
+		"l | abcdefghijklmnopqrstuvwxyz [a-z]",
+		"u | ABCDEFGHIJKLMNOPQRSTUVWXYZ [A-Z]",
+		"d | 0123456789                 [0-9]",
+		"h | 0123456789abcdef           [0-9a-f]",
+		"H | 0123456789ABCDEF           [0-9A-F]",
+		"s |  !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
+		"a | ?l?u?d?s",
+		"b | 0x00 - 0xff"]
+		for li in telin:
+			text+=f"{li}\n";
+		print(text)
+	def CreateProcessDict(filedict):
+		"""Создание Словаря"""
+		if(wifihc.FlagMinMax):
+			return f"--stdout -a3 -i --increment-min={wifihc.Minimum} --increment-max={wifihc.Maximum} {wifihc.Mask} > {filedict}"
+		else:
+			return f"--stdout -a3 {wifihc.Mask} > {filedict}"
+	def RunProcessMaskDict(filedict,wifihc=WIFI_MASK()):
+		"""Запуск Процеса Перебора WIFI по Созданому Словарю"""
+		return f"-m 22000 -a3 -w {wifihc.Speed} {wifihc.FileHC22000} {filedict}"
+	def RunProcessMask(wifihc=WIFI_MASK()):
+		"""Запуск Процеса Перебора WIFI с Маской !hashcat"""
+		if(wifihc.FlagMinMax):
+			return f"--stdout -a3 -i --increment-min={wifihc.Minimum} --increment-max={wifihc.Maximum} {wifihc.Mask} > tmp.txt && hashcat -m 22000 -a3 -w {wifihc.Speed} {wifihc.FileHC22000} tmp.txt && rm -rf tmp.txt"
+		else:
+			return f"--stdout -a3 {wifihc.Mask} > tmp.txt && hashcat -m 22000 -a3 -w {wifihc.Speed} {wifihc.FileHC22000} tmp.txt && rm -rf tmp.txt"
+	def CatDirToDict(dir_cat, link_dicts):
+	 """Склеивание Путей Директори"""
+	 link_dicts_new=""
+	 mass=link_dicts.split(' ')
+	 for i,li in enumerate(mass):      
+	    if(i<len(mass)):
+		    link_dicts_new+=f"{dir_cat}/{li} "
+	    if(i==len(mass)):
+	      link_dicts_new+=f"{dir_cat}/{li}"
+	 return link_dicts_new
+	def RunProcess(dir_hc=WIFI_Init()):
+	 	"""Запуск Процеса Перебора WIFI !hashcat"""
+	 	#-------------------Иницилизация---------------------
+	 	selectfilespath,dir_wifi,one_string_dicts="","",""
+	 	url_convert="https://hashcat.net/cap2hashcat/"
+	 	#Словари Папка
+	 	try:
+	 		filesdicts = os.listdir(dir_hc.DirHomeDicts)
+	 		print(f"--------Словари {dir_hc.DirHomeDicts}-------")
+	 		for i,li in enumerate(filesdicts):
+	 			print(f"Номер: {i}|Словарь: {li}")
+	 		print(f"-------Захваты {dir_hc.DirHomeHC22000}--------")
+	 		hc22000file=files.upload()
+	 		print(f"HC22000: {hc22000file}")
+	 	except Exception as ex:
+ 			print(f"ERROR: {ex}!")
 
 # class WIFI_Cloud:
 # 	"""WIFI Cloud"""
