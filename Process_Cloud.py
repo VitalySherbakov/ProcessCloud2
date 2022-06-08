@@ -75,7 +75,7 @@ class WIFI_Cloud:
 		"""Иницилизациия Библиотек"""
 		com=f"install cmake build-essential -y && apt install checkinstall git -y && git clone {github} && cd hashcat && git submodule update --init && make && make install && pip install unrar"
 		return com
-	def DirInit(dir_hc: WIFI_Init()):
+	def DirInit(dir_hc):
 		"""Иницилизация создание необходимых директорий"""
 		dir_home=f"{current_dir}//{dir_hc.DirHomeHC22000}"
 		dir_dicts=f"{current_dir}//{dir_hc.DirHomeDicts}"
@@ -84,7 +84,7 @@ class WIFI_Cloud:
 		for li in dir_hc.DirWIFI:
  			dir_new=f"{current_dir}//{dir_hc.DirHomeHC22000}//{li}"
  			WIFI_Cloud.CreatDir(dir_new)
-	def GoogleDisk1_ZIP_Extract(dir_hc: WIFI_Init()):
+	def GoogleDisk1_ZIP_Extract(dir_hc):
 		"""Распаковка Первого Пакета Словарей zip"""
 		command=""
 		for i,li in enumerate(dir_hc.GoogleDisk1):
@@ -95,7 +95,7 @@ class WIFI_Cloud:
 			if(i==len(dir_hc.GoogleDisk1)-1):
 				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts}"
 		return command
-	def GoogleDisk2_ZIP_Extract(dir_hc: WIFI_Init()):
+	def GoogleDisk2_ZIP_Extract(dir_hc):
 		"""Распаковка Второй Пакета Словарей zip"""
 		command=""
 		for i,li in enumerate(dir_hc.GoogleDisk2):
@@ -106,7 +106,7 @@ class WIFI_Cloud:
 			if(i==len(dir_hc.GoogleDisk2)-1):
 				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts}"
 		return command
-	def GoogleDisk3_ZIP_Extract(dir_hc: WIFI_Init()):
+	def GoogleDisk3_ZIP_Extract(dir_hc):
 		"""Распаковка Третий Пакета Словарей zip"""
 		command=""
 		for i,li in enumerate(dir_hc.GoogleDisk3):
@@ -117,7 +117,7 @@ class WIFI_Cloud:
 			if(i==len(dir_hc.GoogleDisk3)-1):
 				command+=f"unzip {dir_hc.DirGoogleDisk}/{li}.zip -d {dir_hc.DirHomeDicts}"
 		return command
-	def GoogleDisk1_RAR_Extract(dir_hc: WIFI_Init()):
+	def GoogleDisk1_RAR_Extract(dir_hc):
 		"""Распаковка Первого Пакета Словарей rar"""
 		command=""
 		for i,li in enumerate(dir_hc.GoogleDisk1):
@@ -128,7 +128,7 @@ class WIFI_Cloud:
 			if(i==len(dir_hc.GoogleDisk1)-1):
 				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts}"
 		return command
-	def GoogleDisk2_RAR_Extract(dir_hc: WIFI_Init()):
+	def GoogleDisk2_RAR_Extract(dir_hc):
 		"""Распаковка Второй Пакета Словарей rar"""
 		command=""
 		for i,li in enumerate(dir_hc.GoogleDisk2):
@@ -139,7 +139,7 @@ class WIFI_Cloud:
 			if(i==len(dir_hc.GoogleDisk2)-1):
 				command+=f"unrar {dir_hc.DirGoogleDisk}/{li}.rar x {dir_hc.DirHomeDicts}"
 		return command
-	def GoogleDisk3_RAR_Extract(dir_hc: WIFI_Init()):
+	def GoogleDisk3_RAR_Extract(dir_hc):
 		"""Распаковка Третий Пакета Словарей rar"""
 		command=""
 		for i,li in enumerate(dir_hc.GoogleDisk3):
@@ -188,10 +188,10 @@ class WIFI_Cloud:
 			return f"--stdout -a3 -i --increment-min={wifihc.Minimum} --increment-max={wifihc.Maximum} {wifihc.Mask} > {filedict}"
 		else:
 			return f"--stdout -a3 {wifihc.Mask} > {filedict}"
-	def RunProcessMaskDict(filedict,wifihc: WIFI_MASK()):
+	def RunProcessMaskDict(filedict,wifihc):
 		"""Запуск Процеса Перебора WIFI по Созданому Словарю"""
 		return f"-m 22000 -a3 -w {wifihc.Speed} {wifihc.FileHC22000} {filedict}"
-	def RunProcessMask(wifihc=WIFI_MASK()):
+	def RunProcessMask(wifihc):
 		"""Запуск Процеса Перебора WIFI с Маской !hashcat"""
 		if(wifihc.FlagMinMax):
 			return f"--stdout -a3 -i --increment-min={wifihc.Minimum} --increment-max={wifihc.Maximum} {wifihc.Mask} > tmp.txt && hashcat -m 22000 -a3 -w {wifihc.Speed} {wifihc.FileHC22000} tmp.txt && rm -rf tmp.txt"
@@ -207,7 +207,7 @@ class WIFI_Cloud:
 	    if(i==len(mass)):
 	      link_dicts_new+=f"{dir_cat}/{li}"
 	 return link_dicts_new
-	def RunProcess(dir_hc: WIFI_Init()):
+	def RunProcess(dir_hc):
 	 	"""Запуск Процеса Перебора WIFI !hashcat"""
 	 	#-------------------Иницилизация---------------------
 	 	selectfilespath,dir_wifi,one_string_dicts="","",""
