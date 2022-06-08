@@ -222,6 +222,11 @@ class WIFI_Cloud:
 	    if(i==len(mass)):
 	      link_dicts_new+=f"{dir_cat}/{li}"
 	 return link_dicts_new
+	def CreateFile(filepath: str, content: str, encode="utf-8"):
+		"""Создать Файл"""
+		f = open(filepath, "w", encoding=encode)
+		f.write(content)
+		f.close()
 	def RunProcess(dir_hc):
 	 	"""Запуск Процеса Перебора WIFI !hashcat"""
 	 	#-------------------Иницилизация---------------------
@@ -337,29 +342,3 @@ class WIFI_Cloud:
 	 			print(f"Вы выбрали {index_etap_select} Метод вышло за приделы 1-3")
 	 	except Exception as ex:
  			print(f"ERROR: {ex}!")
-
-
-
-
-# 							input(f"Запустить Этап ({index_pod_etap_select}) Процес........................")
-# 							return f"-m 22000 -a 0 -w {dir_hc.Speed} {selectfilespath} {three_mass[2]}"
-# 				if(index_etap_select==3):
-# 					print(f"---------------Процес Кусками---------------")
-# 					print(f"Скорость-{dir_hc.Speed}")
-# 					print(f"Папка Сеть WIFI: {dir_wifi}")
-# 					print(f"Файл WIFI: {selectfilespath}")
-# 					for i3,li3 in enumerate(dir_hc.DictsProces):
-# 						print(f"Номер {i3+1} Этапа | {li3}")
-# 					pod_etap_select2=input(f"Выбрать 1-{len(dir_hc.DictsProces)} Этапов: ")
-# 					index_pod_etap_select2=int(pod_etap_select2)
-# 					if (index_pod_etap_select2<len(dir_hc.DictsProces)):
-# 						for i2,li2 in enumerate(dir_hc.DictsProces):
-# 							if ((i2+1)==index_pod_etap_select2):
-# 								input(f"Запустить Этап ({index_pod_etap_select2}) Процес........................")
-# 								return f"-m 22000 -a 0 -w {dir_hc.Speed} {selectfilespath} {dir_hc.DirHomeDicts}/{dir_hc.DictsProces[i2]}"
-# 					else:
-# 						print(f"Вы выбрали {index_pod_etap_select2}, за границы доступности {len(dir_hc.DictsProces)}")
-# 			else:
-# 				print(f"Вы выбрали {index_etap_select} Метод вышло за приделы 1-3")
-# 		except Exception as ex:
-# 			print(f"ERROR: {ex}!")
