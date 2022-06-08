@@ -227,6 +227,9 @@ class WIFI_Cloud:
 		f = open(filepath, "w", encoding=encode)
 		f.write(content)
 		f.close()
+	def DownloadFile(filepath: str):
+		"""Загрузка Файла на Локальный ПК"""
+		files.download(filepath)
 	def RunProcess(dir_hc):
 	 	"""Запуск Процеса Перебора WIFI !hashcat"""
 	 	#-------------------Иницилизация---------------------
