@@ -4,7 +4,7 @@ current_dir = os.getcwd()
 current_dir = current_dir.replace("\\","//")
 #print(f"D: {current_dir}")
 
-class WIFI_Init(object):
+class WIFI_Init:
 	DirHomeHC22000=""
 	DirHomeDicts=""
 	DirGoogleDisk=""
