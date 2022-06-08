@@ -1,6 +1,5 @@
 import os, sys, json
 from google.colab import files
-from os import path
 
 current_dir = os.getcwd()
 current_dir = current_dir.replace("\\","//")
@@ -169,8 +168,8 @@ class WIFI_Cloud:
 		"""Запуск на поиск пароля RAR !hashcat"""
 		return f"-w {speed} -m 13000 -a3 {filehash} {mask}"
 	def FormatFile(filepath: str):
-    	formatfile=path.basename(filepath)
-    	formatfileres=path.splitext(formatfile)[1]
+    	formatfile=os.path.basename(filepath)
+    	formatfileres=os.path.splitext(formatfile)[1]
     	formatfileres=formatfileres.replace(".","")
     	return formatfileres
 	def HelpMask():
