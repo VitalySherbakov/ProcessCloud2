@@ -236,6 +236,7 @@ class WIFI_Cloud:
 	 		print(f"-------Захваты {dir_hc.DirHomeHC22000}--------")
 	 		wifidir=input("WIFI: ")
 	 		WIFI_Cloud.CreatDir(f"{current_dir}/{dir_hc.DirHomeHC22000}/{wifidir}")
+	 		WIFI_Cloud.UploadedFile(f"{current_dir}/{dir_hc.DirHomeHC22000}", wifidir)
 	 		for i,li in enumerate(dirs):
 	 			print(f"Номер: {i}|Папка: {li}")
 	 		print("---------------")
