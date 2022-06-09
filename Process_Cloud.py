@@ -245,6 +245,7 @@ class WIFI_Cloud:
 	 		print(f"-------Захваты {dir_hc.DirHomeHC22000}--------")
 	 		wifidir=input("WIFI: ")
 	 		WIFI_Cloud.CreatDir(f"{current_dir}/{dir_hc.DirHomeHC22000}/{wifidir}")
+	 		print("Выберите сконвентированый hc22000 файл.............")
 	 		WIFI_Cloud.UploadedFile(f"{current_dir}/{dir_hc.DirHomeHC22000}", wifidir)
 	 		dirs = os.listdir(dir_hc.DirHomeHC22000)
 	 		for i,li in enumerate(dirs):
